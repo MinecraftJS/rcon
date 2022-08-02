@@ -1,0 +1,34 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "description": "todo: change",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MinecraftJS/template.git"
+  },
+  "keywords": [
+    "minecraftjs"
+  ],
+  "author": "todo: change",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MinecraftJS/template/issues"
+  },
+  "homepage": "https://github.com/MinecraftJS/template#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^2.6.1",
+    "typescript": "^4.6.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18.x"
+  }
+}
