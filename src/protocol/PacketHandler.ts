@@ -31,7 +31,9 @@ export class RCONPacketHandler {
 
     // length of (RequestId+Type) + length of payload + length of null bytes
     if (length !== 4 * 2 + Buffer.byteLength(packet.payload) + 2)
-      emitWarning("Packet length doesn't match the length field of the packet");
+      emitWarning(
+        "[RCON] Packet length doesn't match the length field of the packet"
+      );
 
     const handledPackets: HandledPacket[] = [{ requestId, packet }];
 

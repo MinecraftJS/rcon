@@ -145,12 +145,14 @@ export class RCONClient extends (EventEmitter as new () => TypedEmitter<RCONClie
             this.authenticated = true;
             this.emit('authenticated');
           } else {
-            emitWarning('');
+            emitWarning(
+              `[RCON] Received auth response packet without different request id (expected=${this.authRequestId}, actual=${requestId}, authenticated=${this.authenticated})`
+            );
           }
           break;
 
         default:
-          emitWarning(`Unknown RCONPacketType (type=${packet.type})`);
+          emitWarning(`[RCON] Unknown RCONPacketType (type=${packet.type})`);
           break;
       }
     }
