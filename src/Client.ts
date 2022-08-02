@@ -138,12 +138,14 @@ export class RCONClient extends (EventEmitter as new () => TypedEmitter<RCONClie
           this.throw(new Error(packet.payload), true);
           break;
 
-        case RCONPacketType.COMMAND:
-          // For some reason, when authenticating
-          // a Command packet is sent when successful
+        // Server doesn't send COMMAND packets
+        // case RCONPacketType.COMMAND:
+        case RCONPacketType.AUTH_RESPONSE:
           if (requestId === this.authRequestId) {
             this.authenticated = true;
             this.emit('authenticated');
+          } else {
+            emitWarning('');
           }
           break;
 
