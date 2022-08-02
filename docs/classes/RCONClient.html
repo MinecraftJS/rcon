@@ -52,6 +52,7 @@
 <a href="RCONClient.html#emit" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>emit</span></a>
 <a href="RCONClient.html#eventNames" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>event<wbr/>Names</span></a>
 <a href="RCONClient.html#executeCommand" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>execute<wbr/>Command</span></a>
+<a href="RCONClient.html#executeCommandAsync" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>execute<wbr/>Command<wbr/>Async</span></a>
 <a href="RCONClient.html#getMaxListeners" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Max<wbr/>Listeners</span></a>
 <a href="RCONClient.html#handleMessage" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>handle<wbr/>Message</span></a>
 <a href="RCONClient.html#listenerCount" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>listener<wbr/>Count</span></a>
@@ -103,56 +104,56 @@
 <div class="tsd-comment tsd-typography"><p>Request ID of the login packet</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/adf5d04/src/Client.ts#L27">src/Client.ts:27</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/7c3a3f7/src/Client.ts#L27">src/Client.ts:27</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="authenticated" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>authenticated</span><a href="#authenticated" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">authenticated<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 <div class="tsd-comment tsd-typography"><p>Whether or not this client has been authenticated</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/adf5d04/src/Client.ts#L20">src/Client.ts:20</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/7c3a3f7/src/Client.ts#L20">src/Client.ts:20</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="connected" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>connected</span><a href="#connected" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">connected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 <div class="tsd-comment tsd-typography"><p>Whether or not this client is connected</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/adf5d04/src/Client.ts#L22">src/Client.ts:22</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/7c3a3f7/src/Client.ts#L22">src/Client.ts:22</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="handler" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>handler</span><a href="#handler" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">handler<span class="tsd-signature-symbol">:</span> <a href="RCONPacketHandler.html" class="tsd-signature-type" data-tsd-kind="Class">RCONPacketHandler</a></div>
 <div class="tsd-comment tsd-typography"><p>Packet handler</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/adf5d04/src/Client.ts#L29">src/Client.ts:29</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/7c3a3f7/src/Client.ts#L29">src/Client.ts:29</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="host" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>host</span><a href="#host" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 <div class="tsd-comment tsd-typography"><p>Host this client is linked to</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/adf5d04/src/Client.ts#L16">src/Client.ts:16</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/7c3a3f7/src/Client.ts#L16">src/Client.ts:16</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="password" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>password</span><a href="#password" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 <div class="tsd-comment tsd-typography"><p>Password used to login</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/adf5d04/src/Client.ts#L25">src/Client.ts:25</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/7c3a3f7/src/Client.ts#L25">src/Client.ts:25</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="port" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>port</span><a href="#port" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 <div class="tsd-comment tsd-typography"><p>Port this client is linked to</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/adf5d04/src/Client.ts#L18">src/Client.ts:18</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/7c3a3f7/src/Client.ts#L18">src/Client.ts:18</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="socket" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>socket</span><a href="#socket" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">socket<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Socket</span></div>
 <div class="tsd-comment tsd-typography"><p>TCP socket</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/adf5d04/src/Client.ts#L31">src/Client.ts:31</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/MinecraftJS/rcon/blob/7c3a3f7/src/Client.ts#L31">src/Client.ts:31</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="addListener" class="tsd-anchor"></a>
@@ -230,6 +231,9 @@
 <ul class="tsd-descriptions">
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Execute a command on the server</p>
+<p>This method isn&#39;t deprecated but it&#39;s
+way better to use <code>RCONClient#executeCommandAsync</code>
+because it handles fragmentation unlike this one</p>
 
 <h3>Returns</h3><p>The request ID (use it to catch the response)</p>
 </div>
@@ -241,6 +245,35 @@
 <div class="tsd-comment tsd-typography"><p>Command to execute on the server</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="executeCommandAsync" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>execute<wbr/>Command<wbr/>Async</span><a href="#executeCommandAsync" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature" id="executeCommandAsync.executeCommandAsync-1">execute<wbr/>Command<wbr/>Async<span class="tsd-signature-symbol">(</span>command<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li></ul>
+<ul class="tsd-descriptions">
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Execute a command and asynchronously
+get its output</p>
+<p>This method handles everything (including
+fragmentation) so you don&#39;t have to worry
+about it.</p>
+
+<h3>Returns</h3><p>A promise that resolves with the command&#39;s output</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>command: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>Command to execute</p>
+</div></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> timeout: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>Timeout before the
+promise is rejected (prevents promise
+from indefinitely being on pending
+if something fails), in milliseconds</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="getMaxListeners" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Max<wbr/>Listeners</span><a href="#getMaxListeners" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -544,6 +577,7 @@
 <li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="RCONClient.html#emit" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>emit</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="RCONClient.html#eventNames" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>event<wbr/>Names</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="RCONClient.html#executeCommand" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>execute<wbr/>Command</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="RCONClient.html#executeCommandAsync" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>execute<wbr/>Command<wbr/>Async</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="RCONClient.html#getMaxListeners" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>Max<wbr/>Listeners</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="RCONClient.html#handleMessage" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>handle<wbr/>Message</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="RCONClient.html#listenerCount" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>listener<wbr/>Count</a></li>
