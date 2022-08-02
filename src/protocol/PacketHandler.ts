@@ -17,7 +17,7 @@ export class RCONPacketHandler {
    * @param buffer Raw buffer
    * @returns All handled packets
    */
-  public handle(buffer: Buffer, noArray = false): HandledPacket[] {
+  public handle(buffer: Buffer): HandledPacket[] {
     const buf = new BufWrapper(buffer);
 
     const length = readInt32LE(buf);
