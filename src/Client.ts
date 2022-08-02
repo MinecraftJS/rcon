@@ -85,6 +85,10 @@ export class RCONClient extends (EventEmitter as new () => TypedEmitter<RCONClie
 
   /**
    * Execute a command on the server
+   *
+   * This method isn't deprecated but it's
+   * way better to use `RCONClient#executeCommandAsync`
+   * because it handles fragmentation unlike this one
    * @param command Command to execute on the server
    * @returns The request ID (use it to catch the response)
    */
@@ -99,6 +103,64 @@ export class RCONClient extends (EventEmitter as new () => TypedEmitter<RCONClie
 
     this.write(buffer);
     return requestId;
+  }
+
+  /**
+   * Execute a command and asynchronously
+   * get its output
+   *
+   * This method handles everything (including
+   * fragmentation) so you don't have to worry
+   * about it.
+   * @param command Command to execute
+   * @param timeout Timeout before the
+   * promise is rejected (prevents promise
+   * from indefinitely being on pending
+   * if something fails), in milliseconds
+   * @returns A promise that resolves with the command's output
+   */
+  public executeCommandAsync(
+    command: string,
+    timeout?: number
+  ): Promise<string> {
+    return new Promise((resolve, reject) => {
+      let resolved = false;
+      if (timeout)
+        setTimeout(() => {
+          if (resolved) return;
+          reject(
+            `RCONClient#executeCommandAsync didn't resolve within the timeout (timeout=${timeout})`
+          );
+        }, timeout);
+
+      let realRequestId,
+        fakeRequestId = 0;
+      let response = '';
+
+      const responseListener = (
+        packet: RCONPacket,
+        requestId: number
+      ): void => {
+        // Second packet received, resolving promise
+        if (requestId === fakeRequestId) {
+          resolved = true;
+          this.off('response', responseListener);
+          resolve(response);
+        }
+
+        if (requestId === realRequestId) response += packet.payload;
+      };
+
+      this.on('response', responseListener);
+
+      /**
+       * Wondering why sending two commands?
+       * @see https://wiki.vg/RCON#Fragmentation
+       */
+      realRequestId = this.executeCommand(command);
+      // Will never be fragmented
+      fakeRequestId = this.executeCommand('me');
+    });
   }
 
   /**
@@ -123,7 +185,7 @@ export class RCONClient extends (EventEmitter as new () => TypedEmitter<RCONClie
     for (const { requestId, packet } of packets) {
       switch (packet.type) {
         case RCONPacketType.RESPONSE:
-          this.emit('response', packet);
+          this.emit('response', packet, requestId);
           break;
 
         case RCONPacketType.ERROR:
@@ -191,5 +253,5 @@ type RCONClientEvents = {
   raw_message: (message: Buffer) => void;
   authenticated: () => void;
   authentication_failed: () => void;
-  response: (packet: RCONPacket) => void;
+  response: (packet: RCONPacket, requestId: number) => void;
 };
