@@ -4,7 +4,7 @@ import { emitWarning } from 'node:process';
 import TypedEmitter from 'typed-emitter';
 import { RCONPacket } from './protocol/Packet';
 import { RCONPacketBuilder } from './protocol/PacketBuilder';
-import { RCONPacketHandler } from './protocol/PacketHandler';
+import { HandledPacket, RCONPacketHandler } from './protocol/PacketHandler';
 import { RCONPacketType } from './util/PacketType';
 
 /**
@@ -63,7 +63,7 @@ export class RCONClient extends (EventEmitter as new () => TypedEmitter<RCONClie
       );
       this.authRequestId = requestId;
 
-      this.socket.write(buffer);
+      this.write(buffer);
     });
 
     this.socket.on('data', (buffer) => this.handleMessage(buffer));
@@ -72,7 +72,7 @@ export class RCONClient extends (EventEmitter as new () => TypedEmitter<RCONClie
     this.socket.on('close', () => this.disconnect());
     this.socket.on('error', (error) => {
       this.disconnect();
-      this.emit('error', error, false);
+      this.throw(error, false);
     });
 
     this.socket.connect({
@@ -90,14 +90,14 @@ export class RCONClient extends (EventEmitter as new () => TypedEmitter<RCONClie
    */
   public executeCommand(command: string): number {
     if (!this.authenticated)
-      throw new Error("Can't send command before authentication!");
+      throw new Error("[RCON] Can't send command before authentication!");
 
     const { buffer, requestId } = new RCONPacketBuilder(
       RCONPacketType.COMMAND,
       command
     );
 
-    this.socket.write(buffer);
+    this.write(buffer);
     return requestId;
   }
 
@@ -110,41 +110,73 @@ export class RCONClient extends (EventEmitter as new () => TypedEmitter<RCONClie
     this.emit('disconnect');
   }
 
+  /** Handle incoming messages */
   private handleMessage(buffer: Buffer): void {
     this.emit('raw_message', buffer);
-    const { requestId, packet } = this.handler.handle(buffer);
-
-    switch (packet.type) {
-      case RCONPacketType.RESPONSE:
-        this.emit('response', packet);
-        break;
-      case RCONPacketType.ERROR:
-        if (requestId === this.authRequestId) {
-          const emitted = this.emit('authentication_failed');
-          if (!emitted)
-            throw new Error(
-              'Authentication failed, please handle the `authentication_failed` event'
-            );
-        }
-
-        const emitted = this.emit('error', new Error(packet.payload), true);
-        if (!emitted) throw new Error(packet.payload);
-
-        break;
-
-      case RCONPacketType.COMMAND:
-        // For some reason, when authenticating
-        // a Command packet is sent when successful
-        if (requestId === this.authRequestId) {
-          this.authenticated = true;
-          this.emit('authenticated');
-        }
-        break;
-
-      default:
-        emitWarning(`Unknown RCONPacketType (type=${packet.type})`);
-        break;
+    let packets: HandledPacket[] = [];
+    try {
+      packets = this.handler.handle(buffer);
+    } catch (error) {
+      return this.throw(error, error.message?.startsWith('[RCON]'));
     }
+
+    for (const { requestId, packet } of packets) {
+      switch (packet.type) {
+        case RCONPacketType.RESPONSE:
+          this.emit('response', packet);
+          break;
+
+        case RCONPacketType.ERROR:
+          if (requestId === this.authRequestId) {
+            const emitted = this.emit('authentication_failed');
+            if (!emitted)
+              throw new Error(
+                '[RCON] Authentication failed, please handle the `authentication_failed` event'
+              );
+          }
+
+          this.throw(new Error(packet.payload), true);
+          break;
+
+        case RCONPacketType.COMMAND:
+          // For some reason, when authenticating
+          // a Command packet is sent when successful
+          if (requestId === this.authRequestId) {
+            this.authenticated = true;
+            this.emit('authenticated');
+          }
+          break;
+
+        default:
+          emitWarning(`Unknown RCONPacketType (type=${packet.type})`);
+          break;
+      }
+    }
+  }
+
+  /**
+   * Write a message to the server
+   * @param buffer Message to send
+   */
+  private write(buffer: Buffer): void {
+    const max = RCONPacket.MAX_CLIENT_PAYLOAD_LENGTH + 4 * 3 + 2;
+    if (buffer.length > max)
+      return this.throw(
+        new Error(`[RCON] Can't write packet larger than ${max} bytes`),
+        true
+      );
+
+    this.socket.write(buffer);
+  }
+
+  /**
+   * Throw an error
+   * @param error Error to throw
+   * @param isRCON Whether or not this error comes from RCON
+   */
+  private throw(error: Error, isRCON?: boolean): void {
+    const emitted = this.emit('error', error, isRCON);
+    if (!emitted) throw error;
   }
 }
 

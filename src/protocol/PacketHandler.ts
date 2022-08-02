@@ -4,18 +4,23 @@ import { readInt32LE } from '../util/Int32LE';
 import { RCONPacketType } from '../util/PacketType';
 import { RCONPacket } from './Packet';
 
+export interface HandledPacket {
+  /** Request ID generated for that packet */
+  requestId: number;
+  /** The packet itself */
+  packet: RCONPacket;
+}
+
 export class RCONPacketHandler {
   /**
    * Handle a packet
    * @param buffer Raw buffer
-   * @returns The request ID and the packet
+   * @returns All handled packets
    */
-  public handle(buffer: Buffer): { requestId: number; packet: RCONPacket } {
+  public handle(buffer: Buffer, noArray = false): HandledPacket[] {
     const buf = new BufWrapper(buffer);
 
     const length = readInt32LE(buf);
-    if (length + 4 !== buffer.length)
-      emitWarning("Packet length doesn't match the length field of the packet");
 
     const requestId = readInt32LE(buf);
     const type: RCONPacketType = readInt32LE(buf);
@@ -24,6 +29,18 @@ export class RCONPacketHandler {
 
     packet.read(type);
 
-    return { requestId, packet };
+    // length of (RequestId+Type) + length of payload + length of null bytes
+    if (length !== 4 * 2 + Buffer.byteLength(packet.payload) + 2)
+      emitWarning("Packet length doesn't match the length field of the packet");
+
+    const handledPackets: HandledPacket[] = [{ requestId, packet }];
+
+    // If we have another packet in the same buffer
+    if (buf.buffer.length > buf.offset) {
+      const handlded = this.handle(buffer.subarray(buf.offset));
+      handledPackets.push(...handlded);
+    }
+
+    return handledPackets;
   }
 }

@@ -6,7 +6,7 @@ import { RCONPacket } from './Packet';
 
 /**
  * RCON Packet Builder, used
- * to fully build packets
+ * to create fully built packets
  */
 export class RCONPacketBuilder {
   /** Packet buffer, contains the packet data */

@@ -57,11 +57,24 @@ export class RCONPacket {
       payloadLength++;
     }
 
+    const max = RCONPacket.MAX_SERVER_PAYLOAD_LENGTH;
+    if (payloadLength > max)
+      throw new Error(
+        `[RCON] Maximum payload length is ${max} bytes, received ${payloadLength}`
+      );
+
     const payloadOffset = 4 * 3;
     this.payload = this.buf.buffer
       .subarray(payloadOffset, payloadOffset + payloadLength)
       .toString('latin1');
 
+    this.buf.readBytes(1);
+
     return this;
   }
+
+  /** Maximum client to server packet length */
+  public static readonly MAX_CLIENT_PAYLOAD_LENGTH = 1460;
+  /** Maximum server to client packet length */
+  public static readonly MAX_SERVER_PAYLOAD_LENGTH = 4110;
 }
