@@ -1,5 +1,5 @@
 {
-  "name": "rcon",
+  "name": "@minecraft-js/rcon",
   "version": "1.0.0",
   "description": "RCON Minecraft client written in TypeScript",
   "main": "dist/index.js",
