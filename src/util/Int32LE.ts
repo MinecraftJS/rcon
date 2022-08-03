@@ -1,4 +1,5 @@
 import { BufWrapper } from '@minecraft-js/bufwrapper';
+import { Buffer } from 'node:buffer';
 
 /**
  * Encode a 32-bit integer (little-endian)

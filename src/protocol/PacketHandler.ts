@@ -1,4 +1,5 @@
 import { BufWrapper } from '@minecraft-js/bufwrapper';
+import { Buffer } from 'node:buffer';
 import { emitWarning } from 'node:process';
 import { readInt32LE } from '../util/Int32LE';
 import { RCONPacketType } from '../util/PacketType';
